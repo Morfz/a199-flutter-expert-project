@@ -15,12 +15,12 @@ class PopularMoviesBloc extends Bloc<PopularMoviesEvent, PopularMoviesState> {
 
       final result = await getPopularMovies.execute();
       result.fold(
-              (failure) {
-            emit(PopularMoviesError(failure.message));
-          },
-              (data) {
-            emit(PopularMoviesHasData(data));
-          }
+        (failure) {
+          emit(PopularMoviesError(failure.message));
+        },
+        (data) {
+          emit(PopularMoviesHasData(data));
+        }
       );
     });
   }

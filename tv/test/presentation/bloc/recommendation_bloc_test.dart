@@ -46,7 +46,7 @@ void main() {
 
       return tvRecomendationBloc;
     },
-    act: (bloc) => bloc.add(OnFetchTvRecommendations(tId)),
+    act: (bloc) => bloc.add(const FetchTvRecommendations(tId)),
     expect: () => [TvRecommendationsLoading(), TvRecommendationsHasData(tTvs)],
   );
 
@@ -57,8 +57,8 @@ void main() {
           .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
       return tvRecomendationBloc;
     },
-    act: (bloc) => bloc.add(OnFetchTvRecommendations(tId)),
+    act: (bloc) => bloc.add(const FetchTvRecommendations(tId)),
     expect: () =>
-        [TvRecommendationsLoading(), TvRecommendationsError('Server Failure')],
+        [TvRecommendationsLoading(), const TvRecommendationsError('Server Failure')],
   );
 }

@@ -14,18 +14,18 @@ import 'nowplaying_movies_bloc_test.mocks.dart';
   GetNowPlayingMovies,
 ])
 void main() {
-  late NowplayingMoviesBloc nowplayingMoviesBloc;
+  late NowPlayingMoviesBloc nowplayingMoviesBloc;
   late MockGetNowPlayingMovies mockGetNowPlayingMovies;
 
   setUp(() {
     mockGetNowPlayingMovies = MockGetNowPlayingMovies();
-    nowplayingMoviesBloc = NowplayingMoviesBloc(mockGetNowPlayingMovies);
+    nowplayingMoviesBloc = NowPlayingMoviesBloc(mockGetNowPlayingMovies);
   });
 
   final tMovieList = <Movie>[];
 
   group('Now Playing Movies BLoC Test', () {
-    blocTest<NowplayingMoviesBloc, NowplayingMoviesState>(
+    blocTest<NowPlayingMoviesBloc, NowPlayingMoviesState>(
         'Should emit [loading, loaded] when data is loaded successfully',
         build: () {
           when(mockGetNowPlayingMovies.execute())
@@ -34,12 +34,12 @@ void main() {
         },
         act: (bloc) => bloc.add(FetchNowPlayingMovies()),
         expect: () =>
-            [NowplayingMoviesLoading(), NowPlayingMoviesHasData(tMovieList)],
+            [NowPlayingMoviesLoading(), NowPlayingMoviesHasData(tMovieList)],
         verify: (bloc) {
           verify(mockGetNowPlayingMovies.execute());
         });
 
-    blocTest<NowplayingMoviesBloc, NowplayingMoviesState>(
+    blocTest<NowPlayingMoviesBloc, NowPlayingMoviesState>(
         'Should emit [loading, error] when data is failed to loaded',
         build: () {
           when(mockGetNowPlayingMovies.execute())
@@ -48,7 +48,7 @@ void main() {
         },
         act: (bloc) => bloc.add(FetchNowPlayingMovies()),
         expect: () =>
-            [NowplayingMoviesLoading(), const NowplayingMoviesError('Server Failure')],
+            [NowPlayingMoviesLoading(), const NowPlayingMoviesError('Server Failure')],
         verify: (bloc) {
           verify(mockGetNowPlayingMovies.execute());
         });

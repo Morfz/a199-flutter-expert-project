@@ -21,10 +21,10 @@ class OnAirTvError extends OnAirTvState {
 }
 
 class OnAirTvHasData extends OnAirTvState {
-  final List<Tv> tv;
+  final List<Tv> onAirTv;
  
-  const OnAirTvHasData(this.tv);
+  const OnAirTvHasData(this.onAirTv);
  
   @override
-  List<Object> get props => [tv];
+  List<Object> get props => [onAirTv];
 }

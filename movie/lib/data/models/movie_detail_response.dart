@@ -1,4 +1,4 @@
-import 'package:movie/data/models/genre_model.dart';
+import 'package:movie/data/models/movie_genre_model.dart';
 import 'package:movie/domain/entities/movie_detail.dart';
 import 'package:equatable/equatable.dart';
 

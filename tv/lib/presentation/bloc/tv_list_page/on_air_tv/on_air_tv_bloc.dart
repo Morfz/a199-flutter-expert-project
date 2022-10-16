@@ -8,6 +8,7 @@ part 'on_air_tv_state.dart';
 
 class OnAirTvBloc extends Bloc<OnAirTvEvent, OnAirTvState> {
   final GetOnAirTv getOnAirTv;
+
   OnAirTvBloc(this.getOnAirTv) : super(OnAirTvEmpty()) {
     on<FetchOnAirTv>((event, emit) async {
       emit(OnAirTvLoading());

@@ -14,17 +14,17 @@ class TvRecommendationsLoading extends TvRecommendationsState {}
 class TvRecommendationsError extends TvRecommendationsState {
   final String message;
 
-  TvRecommendationsError(this.message);
+  const TvRecommendationsError(this.message);
 
   @override
   List<Object> get props => [message];
 }
 
 class TvRecommendationsHasData extends TvRecommendationsState {
-  final List<Tv> result;
+  final List<Tv> tvRecommendation;
 
-  TvRecommendationsHasData(this.result);
+  const TvRecommendationsHasData(this.tvRecommendation);
 
   @override
-  List<Object> get props => [result];
+  List<Object> get props => [tvRecommendation];
 }

@@ -3,12 +3,12 @@ import 'package:core/core.dart';
 import 'package:tv/domain/entities/tv_detail.dart';
 import 'package:tv/domain/repositories/tv_repository.dart';
 
-class RemoveWatchlistTv {
+class SaveWatchlistTv {
   final TvRepository repository;
 
-  RemoveWatchlistTv(this.repository);
+  SaveWatchlistTv(this.repository);
 
   Future<Either<Failure, String>> execute(TvDetail movie) {
-    return repository.removeWatchlist(movie);
+    return repository.saveWatchlistTv(movie);
   }
 }

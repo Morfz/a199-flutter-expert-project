@@ -21,10 +21,10 @@ class TopRatedMoviesError extends TopRatedMoviesState {
 }
 
 class TopRatedMoviesHasData extends TopRatedMoviesState {
-  final List<Movie> topRatedMovies;
+  final List<Movie> topRatedMovie;
 
-  const TopRatedMoviesHasData(this.topRatedMovies);
+  const TopRatedMoviesHasData(this.topRatedMovie);
 
   @override
-  List<Object> get props => [topRatedMovies];
+  List<Object> get props => [topRatedMovie];
 }

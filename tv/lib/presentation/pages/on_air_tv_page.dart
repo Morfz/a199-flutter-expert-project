@@ -35,7 +35,7 @@ class _OnAirTvPageState extends State<OnAirTvPage> {
                 child: CircularProgressIndicator(),
               );
             } else if (state is OnAirTvHasData) {
-              final result = state.tv;
+              final result = state.onAirTv;
               return ListView.builder(
                 itemBuilder: (context, index) {
                   final tv = result[index];

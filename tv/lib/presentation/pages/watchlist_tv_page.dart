@@ -44,7 +44,7 @@ class _WatchlistTvPageState extends State<WatchlistTvPage>
                 child: CircularProgressIndicator(),
               );
             } else if (state is WatchlistTvPageHasData) {
-              final result = state.tv;
+              final result = state.watchlistTv;
               if (result.isEmpty) {
                 return const Center(child: Text("Nothing to see here"));
               }

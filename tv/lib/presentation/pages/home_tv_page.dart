@@ -48,7 +48,7 @@ class _HomeTvPageState extends State<HomeTvPage> {
                   child: CircularProgressIndicator(),
                 );
               } else if (state is OnAirTvHasData) {
-                final tv = state.tv;
+                final tv = state.onAirTv;
                 return TvList(tv);
               } else {
                 return const Text('Failed');

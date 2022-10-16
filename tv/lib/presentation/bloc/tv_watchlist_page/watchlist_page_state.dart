@@ -21,10 +21,10 @@ class WatchlistTvPageError extends WatchlistTvPageState {
 }
 
 class WatchlistTvPageHasData extends WatchlistTvPageState {
-  final List<Tv> tv;
+  final List<Tv> watchlistTv;
 
-  const WatchlistTvPageHasData(this.tv);
+  const WatchlistTvPageHasData(this.watchlistTv);
 
   @override
-  List<Object> get props => [tv];
+  List<Object> get props => [watchlistTv];
 }

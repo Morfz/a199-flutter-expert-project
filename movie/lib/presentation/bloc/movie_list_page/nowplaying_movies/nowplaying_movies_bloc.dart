@@ -6,20 +6,21 @@ import 'package:equatable/equatable.dart';
 part 'nowplaying_movies_event.dart';
 part 'nowplaying_movies_state.dart';
 
-class NowplayingMoviesBloc extends Bloc<NowPlayingMoviesEvent, NowplayingMoviesState> {
+class NowPlayingMoviesBloc extends Bloc<NowPlayingMoviesEvent, NowPlayingMoviesState> {
   final GetNowPlayingMovies getNowPlayingMovies;
-  NowplayingMoviesBloc(this.getNowPlayingMovies) : super(NowplayingMoviesEmpty()) {
+
+  NowPlayingMoviesBloc(this.getNowPlayingMovies) : super(NowPlayingMoviesEmpty()) {
     on<FetchNowPlayingMovies>((event, emit) async {
-      emit(NowplayingMoviesLoading());
+      emit(NowPlayingMoviesLoading());
 
       final result = await getNowPlayingMovies.execute();
       result.fold(
-              (failure) {
-            emit(NowplayingMoviesError(failure.message));
-          },
-              (data)  {
-            emit(NowPlayingMoviesHasData(data));
-          }
+        (failure) {
+          emit(NowPlayingMoviesError(failure.message));
+        },
+        (data)  {
+          emit(NowPlayingMoviesHasData(data));
+        }
       );
     });
   }

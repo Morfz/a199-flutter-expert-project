@@ -6,6 +6,6 @@ class GetWatchListTvStatus {
   GetWatchListTvStatus(this.repository);
 
   Future<bool> execute(int id) async {
-    return repository.isAddedToWatchlist(id);
+    return repository.isAddedToWatchlistTv(id);
   }
 }

@@ -1,5 +1,5 @@
 import 'package:movie/presentation/bloc/movie_list_page/top_rated_movies/top_rated_movies_bloc.dart';
-import 'package:movie/presentation/widgets/movie_card_list.dart';
+import 'package:movie/presentation/widgets/movie_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -35,7 +35,7 @@ class _TopRatedMoviesPageState extends State<TopRatedMoviesPage> {
                 child: CircularProgressIndicator(),
               );
             } else if (state is TopRatedMoviesHasData) {
-              final result = state.topRatedMovies;
+              final result = state.topRatedMovie;
               return ListView.builder(
                 itemBuilder: (context, index) {
                   final movie = result[index];

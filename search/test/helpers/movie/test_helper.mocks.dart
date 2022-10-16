@@ -14,7 +14,7 @@ import 'package:mockito/mockito.dart' as _i1;
 import 'package:movie/data/datasources/db/movie_database_helper.dart' as _i14;
 import 'package:movie/data/datasources/movie_local_data_source.dart' as _i12;
 import 'package:movie/data/datasources/movie_remote_data_source.dart' as _i10;
-import 'package:movie/data/models/movie_detail_model.dart' as _i3;
+import 'package:movie/data/models/movie_detail_response.dart' as _i3;
 import 'package:movie/data/models/movie_model.dart' as _i11;
 import 'package:movie/data/models/movie_table.dart' as _i13;
 import 'package:movie/domain/entities/movie.dart' as _i8;

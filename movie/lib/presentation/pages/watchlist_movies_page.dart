@@ -1,5 +1,5 @@
-import 'package:movie/presentation/bloc/watchlist_movie_page/watchlist_page_bloc.dart';
-import 'package:movie/presentation/widgets/movie_card_list.dart';
+import 'package:movie/presentation/bloc/watchlist_movie_page/watchlist_movie_page_bloc.dart';
+import 'package:movie/presentation/widgets/movie_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:core/core.dart';
@@ -37,14 +37,14 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
   Widget build(BuildContext context) {
     return Padding(
         padding: const EdgeInsets.all(8.0),
-        child: BlocBuilder<MovieWatchlistPageBloc, WatchlistMoviePageState>(
+        child: BlocBuilder<MovieWatchlistPageBloc, WatchListMoviePageState>(
           builder: (context, state) {
-            if (state is WatchlistPageLoading) {
+            if (state is WatchListMoviePageLoading) {
               return const Center(
                 child: CircularProgressIndicator(),
               );
-            } else if (state is WatchlistPageHasData) {
-              final result = state.movie;
+            } else if (state is WatchListMoviePageHasData) {
+              final result = state.watchListMovie;
               if (result.isEmpty) {
                 return const Center(child: Text("Nothing to see here"));
               }
@@ -55,7 +55,7 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
                 },
                 itemCount: result.length,
               );
-            } else if (state is WatchlistPageError) {
+            } else if (state is WatchListMoviePageError) {
               return Center(
                 child: Text(state.message),
               );

@@ -47,9 +47,9 @@ void main() {
               .thenAnswer((_) async => const Right(tMovieDetail));
           return getTvDetailBloc;
         },
-        act: (bloc) => bloc.add(OnFetchTvDetail(tId)),
+        act: (bloc) => bloc.add(const FetchTvDetail(tId)),
         expect: () {
-          return [TvDetailLoading(), TvDetailHasData(tMovieDetail)];
+          return [TvDetailLoading(), const TvDetailHasData(tMovieDetail)];
         });
 
     blocTest<TvDetailBloc, TvDetailState>(
@@ -59,9 +59,9 @@ void main() {
             .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
         return getTvDetailBloc;
       },
-      act: (bloc) => bloc.add(OnFetchTvDetail(tId)),
+      act: (bloc) => bloc.add(const FetchTvDetail(tId)),
       expect: () {
-        return [TvDetailLoading(), TvDetailError('Server Failure')];
+        return [TvDetailLoading(), const TvDetailError('Server Failure')];
       },
     );
   });

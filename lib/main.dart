@@ -5,7 +5,7 @@ import 'package:movie/presentation/bloc/movie_detail_page/watchlist_status/watch
 import 'package:movie/presentation/bloc/movie_list_page/nowplaying_movies/nowplaying_movies_bloc.dart';
 import 'package:movie/presentation/bloc/movie_list_page/popular_movies/popular_movies_bloc.dart';
 import 'package:movie/presentation/bloc/movie_list_page/top_rated_movies/top_rated_movies_bloc.dart';
-import 'package:movie/presentation/bloc/watchlist_movie_page/watchlist_page_bloc.dart';
+import 'package:movie/presentation/bloc/watchlist_movie_page/watchlist_movie_page_bloc.dart';
 import 'package:tv/presentation/bloc/tv_detail_page/tv_detail/tv_detail_bloc.dart';
 import 'package:tv/presentation/bloc/tv_detail_page/tv_recommendations/tv_recommendations_bloc.dart';
 import 'package:tv/presentation/bloc/tv_detail_page/tv_watchlist_status/tv_watchlist_status_bloc.dart';
@@ -40,6 +40,7 @@ import 'injection.dart' as di;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await HttpSSLPinning.init();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -53,7 +54,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         BlocProvider(
-          create: (_) => di.locator<NowplayingMoviesBloc>(),
+          create: (_) => di.locator<NowPlayingMoviesBloc>(),
         ),
         BlocProvider(
           create: (_) => di.locator<MovieDetailBloc>(),
@@ -89,7 +90,7 @@ class MyApp extends StatelessWidget {
           create: (_) => di.locator<PopularTvBloc>(),
         ),
         BlocProvider(
-          create: (_) => di.locator<TvWatchlistStatusBloc>(),
+          create: (_) => di.locator<WatchlistTvStatusBloc>(),
         ),
         BlocProvider(
           create: (_) => di.locator<WatchlistTvPageBloc>(),

@@ -24,7 +24,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
   void initState() {
     super.initState();
     Future.microtask(() {
-      BlocProvider.of<NowplayingMoviesBloc>(context).add(FetchNowPlayingMovies());
+      BlocProvider.of<NowPlayingMoviesBloc>(context).add(FetchNowPlayingMovies());
       BlocProvider.of<PopularMoviesBloc>(context).add(FetchPopularMovies());
       BlocProvider.of<TopRatedMoviesBloc>(context).add(FetchTopRatedMovies());
     });
@@ -42,14 +42,14 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
               'Now Playing',
               style: kHeading6,
             ),
-            BlocBuilder<NowplayingMoviesBloc, NowplayingMoviesState>(
+            BlocBuilder<NowPlayingMoviesBloc, NowPlayingMoviesState>(
                 builder: (context, state) {
-                  if (state is NowplayingMoviesLoading) {
+                  if (state is NowPlayingMoviesLoading) {
                     return const Center(
                       child: CircularProgressIndicator(),
                     );
                   } else if (state is NowPlayingMoviesHasData) {
-                    final movie = state.movie;
+                    final movie = state.nowPlayingMovie;
                     return MovieList(movie);
                   } else {
                     return const Text('Failed');
@@ -84,7 +84,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
                       child: CircularProgressIndicator(),
                     );
                   } else if (state is TopRatedMoviesHasData) {
-                    final movie = state.topRatedMovies;
+                    final movie = state.topRatedMovie;
                     return MovieList(movie);
                   } else {
                     return const Text('Failed');

@@ -15,7 +15,7 @@ import 'package:sqflite/sqflite.dart' as _i15;
 import 'package:tv/data/datasources/db/tv_database_helper.dart' as _i14;
 import 'package:tv/data/datasources/tv_local_data_source.dart' as _i12;
 import 'package:tv/data/datasources/tv_remote_data_source.dart' as _i10;
-import 'package:tv/data/models/tv_detail_model.dart' as _i3;
+import 'package:tv/data/models/tv_detail_response.dart' as _i3;
 import 'package:tv/data/models/tv_model.dart' as _i11;
 import 'package:tv/data/models/tv_table.dart' as _i13;
 import 'package:tv/domain/entities/tv.dart' as _i8;
@@ -181,43 +181,43 @@ class MockTvRepository extends _i1.Mock implements _i5.TvRepository {
         )),
       ) as _i6.Future<_i2.Either<_i7.Failure, List<_i8.Tv>>>);
   @override
-  _i6.Future<_i2.Either<_i7.Failure, String>> saveWatchlist(
+  _i6.Future<_i2.Either<_i7.Failure, String>> saveWatchlistTv(
           _i9.TvDetail? movie) =>
       (super.noSuchMethod(
         Invocation.method(
-          #saveWatchlist,
+          #saveWatchlistTv,
           [movie],
         ),
         returnValue: _i6.Future<_i2.Either<_i7.Failure, String>>.value(
             _FakeEither_0<_i7.Failure, String>(
           this,
           Invocation.method(
-            #saveWatchlist,
+            #saveWatchlistTv,
             [movie],
           ),
         )),
       ) as _i6.Future<_i2.Either<_i7.Failure, String>>);
   @override
-  _i6.Future<_i2.Either<_i7.Failure, String>> removeWatchlist(
+  _i6.Future<_i2.Either<_i7.Failure, String>> removeWatchlistTv(
           _i9.TvDetail? movie) =>
       (super.noSuchMethod(
         Invocation.method(
-          #removeWatchlist,
+          #removeWatchlistTv,
           [movie],
         ),
         returnValue: _i6.Future<_i2.Either<_i7.Failure, String>>.value(
             _FakeEither_0<_i7.Failure, String>(
           this,
           Invocation.method(
-            #removeWatchlist,
+            #removeWatchlistTv,
             [movie],
           ),
         )),
       ) as _i6.Future<_i2.Either<_i7.Failure, String>>);
   @override
-  _i6.Future<bool> isAddedToWatchlist(int? id) => (super.noSuchMethod(
+  _i6.Future<bool> isAddedToWatchlistTv(int? id) => (super.noSuchMethod(
         Invocation.method(
-          #isAddedToWatchlist,
+          #isAddedToWatchlistTv,
           [id],
         ),
         returnValue: _i6.Future<bool>.value(false),
@@ -316,17 +316,17 @@ class MockTvLocalDataSource extends _i1.Mock implements _i12.TvLocalDataSource {
   }
 
   @override
-  _i6.Future<String> insertWatchlist(_i13.TvTable? tv) => (super.noSuchMethod(
+  _i6.Future<String> insertWatchlistTv(_i13.TvTable? tv) => (super.noSuchMethod(
         Invocation.method(
-          #insertWatchlist,
+          #insertWatchlistTv,
           [tv],
         ),
         returnValue: _i6.Future<String>.value(''),
       ) as _i6.Future<String>);
   @override
-  _i6.Future<String> removeWatchlist(_i13.TvTable? tv) => (super.noSuchMethod(
+  _i6.Future<String> removeWatchlistTv(_i13.TvTable? tv) => (super.noSuchMethod(
         Invocation.method(
-          #removeWatchlist,
+          #removeWatchlistTv,
           [tv],
         ),
         returnValue: _i6.Future<String>.value(''),
@@ -363,17 +363,17 @@ class MockTvDatabaseHelper extends _i1.Mock implements _i14.TvDatabaseHelper {
         returnValue: _i6.Future<_i15.Database?>.value(),
       ) as _i6.Future<_i15.Database?>);
   @override
-  _i6.Future<int> insertWatchlist(_i13.TvTable? tv) => (super.noSuchMethod(
+  _i6.Future<int> insertWatchlistTv(_i13.TvTable? tv) => (super.noSuchMethod(
         Invocation.method(
-          #insertWatchlist,
+          #insertWatchlistTv,
           [tv],
         ),
         returnValue: _i6.Future<int>.value(0),
       ) as _i6.Future<int>);
   @override
-  _i6.Future<int> removeWatchlist(_i13.TvTable? tv) => (super.noSuchMethod(
+  _i6.Future<int> removeWatchlistTv(_i13.TvTable? tv) => (super.noSuchMethod(
         Invocation.method(
-          #removeWatchlist,
+          #removeWatchlistTv,
           [tv],
         ),
         returnValue: _i6.Future<int>.value(0),

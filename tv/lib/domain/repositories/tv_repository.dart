@@ -10,8 +10,8 @@ abstract class TvRepository{
   Future<Either<Failure, List<Tv>>> getPopularTv();
   Future<Either<Failure, List<Tv>>> getTopRatedTv();
   Future<Either<Failure, List<Tv>>> searchTv(String query);
-  Future<Either<Failure, String>> saveWatchlist(TvDetail movie);
-  Future<Either<Failure, String>> removeWatchlist(TvDetail movie);
-  Future<bool> isAddedToWatchlist(int id);
+  Future<Either<Failure, String>> saveWatchlistTv(TvDetail movie);
+  Future<Either<Failure, String>> removeWatchlistTv(TvDetail movie);
+  Future<bool> isAddedToWatchlistTv(int id);
   Future<Either<Failure, List<Tv>>> getWatchlistTv();
 }

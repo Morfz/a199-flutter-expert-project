@@ -8,8 +8,9 @@ part 'tv_detail_state.dart';
 
 class TvDetailBloc extends Bloc<TvDetailEvent, TvDetailState> {
   final GetTvDetail getTvDetail;
+
   TvDetailBloc(this.getTvDetail) : super(TvDetailEmpty()) {
-    on<OnFetchTvDetail>((event, emit) async {
+    on<FetchTvDetail>((event, emit) async {
       emit(TvDetailLoading());
 
       final result = await getTvDetail.execute(event.id);

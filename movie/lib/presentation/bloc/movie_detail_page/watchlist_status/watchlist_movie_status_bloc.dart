@@ -8,48 +8,51 @@ import 'package:movie/domain/usecases/save_watchlist_movie.dart';
 part 'watchlist_movie_status_event.dart';
 part 'watchlist_movie_status_state.dart';
 
-class WatchlistMovieStatusBloc extends Bloc<WatchlistMovieStatusEvent, WatchlistMovieStatusState> {
+class WatchlistMovieStatusBloc extends Bloc<WatchListMovieStatusEvent, WatchListMovieStatusState> {
   static const watchlistAddSuccessMessage = 'Added to Watchlist';
   static const watchlistRemoveSuccessMessage = 'Removed from Watchlist';
+
   final GetWatchListMovieStatus getWatchlistStatus;
   final SaveWatchlistMovie saveWatchlist;
   final RemoveWatchlistMovie removeWatchlist;
-  WatchlistMovieStatusBloc(
-      {required this.getWatchlistStatus,
-      required this.saveWatchlist,
-      required this.removeWatchlist})
-      : super(WatchlistMovieStatusState(false, '')) {
-    on<AddToWatchlist>((event, emit) async {
+
+  WatchlistMovieStatusBloc({required this.getWatchlistStatus, required this.saveWatchlist, required this.removeWatchlist}) : super(const WatchListMovieStatusState(false, '')) {
+    on<AddToWatchListMovie>((event, emit) async {
       final result = await saveWatchlist.execute(event.movieDetail);
       String msg = '';
-      // bool status = state.status;
-      result.fold((failure) {
-        msg = failure.message;
-      }, (success) async {
-        msg = watchlistAddSuccessMessage;
-        // status = await getWatchlistStatus.execute(event.movieDetail.id);
-      });
+
+      result.fold(
+        (failure) {
+          msg = failure.message;
+        },
+        (success) async {
+          msg = watchlistAddSuccessMessage;
+        }
+      );
+
       final status = await getWatchlistStatus.execute(event.movieDetail.id);
-      emit(WatchlistMovieStatusState(status, msg));
+      emit(WatchListMovieStatusState(status, msg));
     });
 
-    on<RemoveFromWatchlist>((event, emit) async {
+    on<RemoveFromWatchListMovie>((event, emit) async {
       final result = await removeWatchlist.execute(event.movieDetail);
       String msg = '';
-      // bool status = state.status;
-      result.fold((failure) {
-        msg = failure.message;
-      }, (success) async {
-        msg = watchlistRemoveSuccessMessage;
-        // status = await getWatchlistStatus.execute(event.movieDetail.id);
-      });
+
+      result.fold(
+        (failure) {
+          msg = failure.message;
+        },
+        (success) async {
+          msg = watchlistRemoveSuccessMessage;
+        }
+      );
       final status = await getWatchlistStatus.execute(event.movieDetail.id);
-      emit(WatchlistMovieStatusState(status, msg));
+      emit(WatchListMovieStatusState(status, msg));
     });
 
-    on<LoadWatclistStatus>((event, emit) async {
+    on<LoadWatchListMovieStatus>((event, emit) async {
       final result = await getWatchlistStatus.execute(event.id);
-      emit(WatchlistMovieStatusState(result, ''));
+      emit(WatchListMovieStatusState(result, ''));
     });
   }
 }

@@ -39,12 +39,12 @@ class TvDatabaseHelper {
     ''');
   }
 
-  Future<int> insertWatchlist(TvTable tv) async {
+  Future<int> insertWatchlistTv(TvTable tv) async {
     final db = await database;
     return await db!.insert(_tblTvWatchlist, tv.toJson());
   }
 
-  Future<int> removeWatchlist(TvTable tv) async {
+  Future<int> removeWatchlistTv(TvTable tv) async {
     final db = await database;
     return await db!.delete(
       _tblTvWatchlist,

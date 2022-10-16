@@ -39,12 +39,12 @@ class MovieDatabaseHelper {
     ''');
   }
 
-  Future<int> insertWatchlist(MovieTable movie) async {
+  Future<int> insertWatchlistMovie(MovieTable movie) async {
     final db = await database;
     return await db!.insert(_tblMovieWatchlist, movie.toJson());
   }
 
-  Future<int> removeWatchlist(MovieTable movie) async {
+  Future<int> removeWatchlistMovie(MovieTable movie) async {
     final db = await database;
     return await db!.delete(
       _tblMovieWatchlist,
@@ -68,7 +68,7 @@ class MovieDatabaseHelper {
     }
   }
 
-  Future<List<Map<String, dynamic>>> getWatchlistMovies() async {
+  Future<List<Map<String, dynamic>>> getWatchlistMovie() async {
     final db = await database;
     final List<Map<String, dynamic>> results = await db!.query(_tblMovieWatchlist);
 

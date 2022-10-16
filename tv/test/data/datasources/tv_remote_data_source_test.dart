@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:core/core.dart';
 import 'package:tv/data/datasources/tv_remote_data_source.dart';
-import 'package:tv/data/models/tv_detail_model.dart';
+import 'package:tv/data/models/tv_detail_response.dart';
 import 'package:tv/data/models/tv_response.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;

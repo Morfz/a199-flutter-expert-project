@@ -1,7 +1,7 @@
 import 'package:search/presentation/bloc/search_movie_bloc.dart';
 import 'package:core/core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie/presentation/widgets/movie_card_list.dart';
+import 'package:movie/presentation/widgets/movie_card.dart';
 import 'package:flutter/material.dart';
 
 class SearchMoviePage extends StatelessWidget {
