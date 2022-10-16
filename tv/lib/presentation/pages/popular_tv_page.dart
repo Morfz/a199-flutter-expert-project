@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:tv/presentation/bloc/tv_list_page/popular_tv/popular_tv_bloc.dart';
 import 'package:tv/presentation/widgets/tv_card_list.dart';
 import 'package:flutter/material.dart';
@@ -43,8 +44,17 @@ class _PopularTvPageState extends State<PopularTvPage> {
                 },
                 itemCount: result.length,
               );
+            } else if (state is PopularTvEmpty) {
+              return Center(
+                child: Text('Empty Popular Tv', style: kSubtitle),
+              );
+            } else if (state is PopularTvError) {
+              return Center(
+                key: Key('error_message'),
+                child: Text(state.message),
+              );
             } else {
-              return const Text("");
+              return Container();
             }
           },
         ),

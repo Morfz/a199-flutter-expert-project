@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:movie/presentation/bloc/movie_list_page/popular_movies/popular_movies_bloc.dart';
 import 'package:movie/presentation/widgets/movie_card.dart';
 import 'package:flutter/material.dart';
@@ -43,12 +44,17 @@ class _PopularMoviesPageState extends State<PopularMoviesPage> {
                 },
                 itemCount: result.length,
               );
-            } else if (state is PopularMoviesError){
+            } else if (state is PopularMoviesEmpty) {
               return Center(
+                child: Text('Empty Popular Movie', style: kSubtitle),
+              );
+            } else if (state is PopularMoviesError) {
+              return Center(
+                key: Key('error_message'),
                 child: Text(state.message),
               );
-            } else{
-              return const Text("");
+            } else {
+              return Container();
             }
           },
         ),

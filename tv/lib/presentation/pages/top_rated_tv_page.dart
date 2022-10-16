@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:tv/presentation/bloc/tv_list_page/top_rated_tv/top_rated_tv_bloc.dart';
 import 'package:tv/presentation/widgets/tv_card_list.dart';
 import 'package:flutter/material.dart';
@@ -43,8 +44,17 @@ class _TopRatedTvPageState extends State<TopRatedTvPage> {
                 },
                 itemCount: result.length,
               );
+            } else if (state is TopRatedTvEmpty) {
+              return Center(
+                child: Text('Empty Top Rated Tv', style: kSubtitle),
+              );
+            } else if (state is TopRatedTvError) {
+              return Center(
+                key: Key('error_message'),
+                child: Text(state.message, style: kSubtitle),
+              );
             } else {
-              return const Text("");
+              return Container();
             }
           },
         ),

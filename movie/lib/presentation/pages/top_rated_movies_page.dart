@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:movie/presentation/bloc/movie_list_page/top_rated_movies/top_rated_movies_bloc.dart';
 import 'package:movie/presentation/widgets/movie_card.dart';
 import 'package:flutter/material.dart';
@@ -43,12 +44,17 @@ class _TopRatedMoviesPageState extends State<TopRatedMoviesPage> {
                 },
                 itemCount: result.length,
               );
+            } else if (state is TopRatedMoviesEmpty) {
+              return Center(
+                child: Text('Empty Top Rated Movie', style: kSubtitle),
+              );
             } else if (state is TopRatedMoviesError) {
               return Center(
-                child: Text(state.message),
+                key: Key('error_message'),
+                child: Text(state.message, style: kSubtitle),
               );
             } else {
-              return const Text("");
+              return Container();
             }
           },
         ),
