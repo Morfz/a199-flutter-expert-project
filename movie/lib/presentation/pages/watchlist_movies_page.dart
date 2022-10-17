@@ -19,7 +19,7 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
   void initState() {
     super.initState();
     Future.microtask(() =>
-        BlocProvider.of<MovieWatchlistPageBloc>(context, listen: false).add(FetchWatchlistMoviePage()));
+        BlocProvider.of<WatchlistMoviePageBloc>(context, listen: false).add(FetchWatchlistMoviePage()));
   }
 
   @override
@@ -30,14 +30,14 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
 
   @override
   void didPopNext() {
-    BlocProvider.of<MovieWatchlistPageBloc>(context, listen: false).add(FetchWatchlistMoviePage());
+    BlocProvider.of<WatchlistMoviePageBloc>(context, listen: false).add(FetchWatchlistMoviePage());
   }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
         padding: const EdgeInsets.all(8.0),
-        child: BlocBuilder<MovieWatchlistPageBloc, WatchListMoviePageState>(
+        child: BlocBuilder<WatchlistMoviePageBloc, WatchListMoviePageState>(
           builder: (context, state) {
             if (state is WatchListMoviePageLoading) {
               return const Center(

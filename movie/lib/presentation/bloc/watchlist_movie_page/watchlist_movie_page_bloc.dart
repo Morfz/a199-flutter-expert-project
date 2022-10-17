@@ -6,10 +6,10 @@ import 'package:movie/domain/usecases/get_watchlist_movies.dart';
 part 'watchlist_movie_page_event.dart';
 part 'watchlist_movie_page_state.dart';
 
-class MovieWatchlistPageBloc extends Bloc<WatchListMoviePageEvent, WatchListMoviePageState> {
+class WatchlistMoviePageBloc extends Bloc<WatchListMoviePageEvent, WatchListMoviePageState> {
   final GetWatchlistMovies getWatchlistMovie;
 
-  MovieWatchlistPageBloc(this.getWatchlistMovie) : super(WatchListMoviePageEmpty()) {
+  WatchlistMoviePageBloc(this.getWatchlistMovie) : super(WatchListMoviePageEmpty()) {
     on<FetchWatchlistMoviePage>((event, emit) async {
       emit(WatchListMoviePageLoading());
 

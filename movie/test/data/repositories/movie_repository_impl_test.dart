@@ -300,7 +300,7 @@ void main() {
     });
   });
 
-  group('Seach Movies', () {
+  group('Search Movies', () {
     const tQuery = 'spiderman';
 
     test('should return movie list when call to data source is successful',
