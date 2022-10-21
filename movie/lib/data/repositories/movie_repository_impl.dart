@@ -36,38 +36,6 @@ class MovieRepositoryImpl implements MovieRepository {
   }
 
   @override
-  Future<Either<Failure, MovieDetail>> getMovieDetail(int id) async {
-    try {
-      final result = await remoteDataSource.getMovieDetail(id);
-      return Right(result.toEntity());
-    } on ServerException {
-      return const Left(ServerFailure(''));
-    } on SocketException {
-      return const Left(ConnectionFailure('Failed to connect to the network'));
-    } on TlsException catch (e) {
-      return Left(CommonFailure('Certificated not valid\n${e.message}'));
-    } catch (e) {
-      return Left(CommonFailure(e.toString()));
-    }
-  }
-
-  @override
-  Future<Either<Failure, List<Movie>>> getMovieRecommendations(int id) async {
-    try {
-      final result = await remoteDataSource.getMovieRecommendations(id);
-      return Right(result.map((model) => model.toEntity()).toList());
-    } on ServerException {
-      return const Left(ServerFailure(''));
-    } on SocketException {
-      return const Left(ConnectionFailure('Failed to connect to the network'));
-    } on TlsException catch (e) {
-      return Left(CommonFailure('Certificated not valid\n${e.message}'));
-    } catch (e) {
-      return Left(CommonFailure(e.toString()));
-    }
-  }
-
-  @override
   Future<Either<Failure, List<Movie>>> getPopularMovies() async {
     try {
       final result = await remoteDataSource.getPopularMovies();
@@ -116,6 +84,38 @@ class MovieRepositoryImpl implements MovieRepository {
   }
 
   @override
+  Future<Either<Failure, MovieDetail>> getMovieDetail(int id) async {
+    try {
+      final result = await remoteDataSource.getMovieDetail(id);
+      return Right(result.toEntity());
+    } on ServerException {
+      return const Left(ServerFailure(''));
+    } on SocketException {
+      return const Left(ConnectionFailure('Failed to connect to the network'));
+    } on TlsException catch (e) {
+      return Left(CommonFailure('Certificated not valid\n${e.message}'));
+    } catch (e) {
+      return Left(CommonFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<Movie>>> getMovieRecommendations(int id) async {
+    try {
+      final result = await remoteDataSource.getMovieRecommendations(id);
+      return Right(result.map((model) => model.toEntity()).toList());
+    } on ServerException {
+      return const Left(ServerFailure(''));
+    } on SocketException {
+      return const Left(ConnectionFailure('Failed to connect to the network'));
+    } on TlsException catch (e) {
+      return Left(CommonFailure('Certificated not valid\n${e.message}'));
+    } catch (e) {
+      return Left(CommonFailure(e.toString()));
+    }
+  }
+
+  @override
   Future<Either<Failure, String>> saveWatchlistMovie(MovieDetail movie) async {
     try {
       final result =
@@ -136,6 +136,8 @@ class MovieRepositoryImpl implements MovieRepository {
       return Right(result);
     } on DatabaseException catch (e) {
       return Left(DatabaseFailure(e.message));
+    } catch (e) {
+      rethrow;
     }
   }
 

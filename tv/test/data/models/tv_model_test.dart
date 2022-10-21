@@ -31,8 +31,27 @@ void main() {
     voteCount: 1,
   );
 
+  final tTvJson = {
+    'backdrop_path': 'backdropPath',
+    'genre_ids': [1, 2],
+    'id': 1,
+    'original_name': 'originalName',
+    'overview': 'overview',
+    'popularity': 1.0,
+    'poster_path': 'posterPath',
+    'release_date': 'firstAirDate',
+    'name': 'name',
+    'vote_average': 1.0,
+    'vote_count': 1
+  };
+
   test('should be a subclass of TV Series entity', () async {
     final result = tTvModel.toEntity();
     expect(result, tTv);
+  });
+
+  test('should be a subclass of Tv JSON', () async {
+    final result = tTvModel.toJson();
+    expect(result, tTvJson);
   });
 }

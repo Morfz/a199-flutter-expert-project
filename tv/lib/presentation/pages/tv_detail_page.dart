@@ -59,6 +59,7 @@ class _TvDetailPageState extends State<TvDetailPage> {
 class DetailContent extends StatelessWidget {
   final TvDetail tv;
   final bool isAddedWatchlist;
+
   const DetailContent(this.tv, this.isAddedWatchlist, {super.key});
 
   @override

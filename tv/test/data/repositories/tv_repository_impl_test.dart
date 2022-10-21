@@ -100,6 +100,32 @@ void main() {
       expect(result,
           equals(const Left(ConnectionFailure('Failed to connect to the network'))));
     });
+
+    test(
+        'should return Certification Failure when the call to remote data source is unsuccessful',
+            () async {
+          // arrange
+          when(mockRemoteDataSource.getOnAirTv())
+              .thenThrow(const TlsException());
+          // act
+          final result = await repository.getOnAirTv();
+          // assert
+          verify(mockRemoteDataSource.getOnAirTv());
+          expect(result, equals(const Left(CommonFailure('Certificated not valid\n'))));
+        });
+
+    test(
+        'should return Exception Failure when the call to remote data source is unsuccessful',
+            () async {
+          // arrange
+          when(mockRemoteDataSource.getOnAirTv())
+              .thenThrow(Exception);
+          // act
+          final result = await repository.getOnAirTv();
+          // assert
+          verify(mockRemoteDataSource.getOnAirTv());
+          expect(result, equals(const Left(CommonFailure('Exception'))));
+        });
   });
 
   group('Popular TV Series', () {
@@ -140,6 +166,32 @@ void main() {
       expect(
           result, const Left(ConnectionFailure('Failed to connect to the network')));
     });
+
+    test(
+        'should return Certification Failure when the call to remote data source is unsuccessful',
+            () async {
+          // arrange
+          when(mockRemoteDataSource.getPopularTv())
+              .thenThrow(const TlsException());
+          // act
+          final result = await repository.getPopularTv();
+          // assert
+          verify(mockRemoteDataSource.getPopularTv());
+          expect(result, equals(const Left(CommonFailure('Certificated not valid\n'))));
+        });
+
+    test(
+        'should return Exception Failure when the call to remote data source is unsuccessful',
+            () async {
+          // arrange
+          when(mockRemoteDataSource.getPopularTv())
+              .thenThrow(Exception);
+          // act
+          final result = await repository.getPopularTv();
+          // assert
+          verify(mockRemoteDataSource.getPopularTv());
+          expect(result, equals(const Left(CommonFailure('Exception'))));
+        });
   });
 
   group('Top Rated TV Series', () {
@@ -179,6 +231,99 @@ void main() {
       expect(
           result, const Left(ConnectionFailure('Failed to connect to the network')));
     });
+
+    test(
+        'should return Certification Failure when the call to remote data source is unsuccessful',
+            () async {
+          // arrange
+          when(mockRemoteDataSource.getTopRatedTv())
+              .thenThrow(const TlsException());
+          // act
+          final result = await repository.getTopRatedTv();
+          // assert
+          verify(mockRemoteDataSource.getTopRatedTv());
+          expect(result, equals(const Left(CommonFailure('Certificated not valid\n'))));
+        });
+
+    test(
+        'should return Exception Failure when the call to remote data source is unsuccessful',
+            () async {
+          // arrange
+          when(mockRemoteDataSource.getTopRatedTv())
+              .thenThrow(Exception);
+          // act
+          final result = await repository.getTopRatedTv();
+          // assert
+          verify(mockRemoteDataSource.getTopRatedTv());
+          expect(result, equals(const Left(CommonFailure('Exception'))));
+        });
+  });
+
+  group('Seach TV Series', () {
+    const tQuery = 'spiderman';
+
+    test('should return TV Serieslist when call to data source is successful',
+            () async {
+          // arrange
+          when(mockRemoteDataSource.searchTv(tQuery))
+              .thenAnswer((_) async => tTvModelList);
+          // act
+          final result = await repository.searchTv(tQuery);
+          // assert
+          /* workaround to test List in Right. Issue: https://github.com/spebbe/dartz/issues/80 */
+          final resultList = result.getOrElse(() => []);
+          expect(resultList, tTvList);
+        });
+
+    test('should return ServerFailure when call to data source is unsuccessful',
+            () async {
+          // arrange
+          when(mockRemoteDataSource.searchTv(tQuery))
+              .thenThrow(ServerException());
+          // act
+          final result = await repository.searchTv(tQuery);
+          // assert
+          expect(result, const Left(ServerFailure('')));
+        });
+
+    test(
+        'should return ConnectionFailure when device is not connected to the internet',
+            () async {
+          // arrange
+          when(mockRemoteDataSource.searchTv(tQuery))
+              .thenThrow(const SocketException('Failed to connect to the network'));
+          // act
+          final result = await repository.searchTv(tQuery);
+          // assert
+          expect(
+              result, const Left(ConnectionFailure('Failed to connect to the network')));
+        });
+
+    test(
+        'should return Certification Failure when the call to remote data source is unsuccessful',
+            () async {
+          // arrange
+          when(mockRemoteDataSource.searchTv(tQuery))
+              .thenThrow(const TlsException());
+          // act
+          final result = await repository.searchTv(tQuery);
+          // assert
+          verify(mockRemoteDataSource.searchTv(tQuery));
+          expect(result, equals(const Left(CommonFailure('Certificated not valid\n'))));
+        });
+
+    test(
+        'should return Exception Failure when the call to remote data source is unsuccessful',
+            () async {
+          // arrange
+          when(mockRemoteDataSource.searchTv(tQuery))
+              .thenThrow(Exception);
+          // act
+          final result = await repository.searchTv(tQuery);
+          // assert
+          verify(mockRemoteDataSource.searchTv(tQuery));
+          expect(result, equals(const Left(CommonFailure('Exception'))));
+        });
   });
 
   group('Get TV Series Detail', () {
@@ -242,6 +387,32 @@ void main() {
       expect(result,
           equals(const Left(ConnectionFailure('Failed to connect to the network'))));
     });
+
+    test(
+        'should return Certification Failure when the call to remote data source is unsuccessful',
+            () async {
+          // arrange
+          when(mockRemoteDataSource.getTvDetail(tId))
+              .thenThrow(const TlsException());
+          // act
+          final result = await repository.getTvDetail(tId);
+          // assert
+          verify(mockRemoteDataSource.getTvDetail(tId));
+          expect(result, equals(const Left(CommonFailure('Certificated not valid\n'))));
+        });
+
+    test(
+        'should return Exception Failure when the call to remote data source is unsuccessful',
+            () async {
+          // arrange
+          when(mockRemoteDataSource.getTvDetail(tId))
+              .thenThrow(Exception);
+          // act
+          final result = await repository.getTvDetail(tId);
+          // assert
+          verify(mockRemoteDataSource.getTvDetail(tId));
+          expect(result, equals(const Left(CommonFailure('Exception'))));
+        });
   });
 
   group('Get TV Series Recommendations', () {
@@ -288,47 +459,32 @@ void main() {
       expect(result,
           equals(const Left(ConnectionFailure('Failed to connect to the network'))));
     });
-  });
-
-  group('Seach TV Series', () {
-    const tQuery = 'spiderman';
-
-    test('should return TV Serieslist when call to data source is successful',
-        () async {
-      // arrange
-      when(mockRemoteDataSource.searchTv(tQuery))
-          .thenAnswer((_) async => tTvModelList);
-      // act
-      final result = await repository.searchTv(tQuery);
-      // assert
-      /* workaround to test List in Right. Issue: https://github.com/spebbe/dartz/issues/80 */
-      final resultList = result.getOrElse(() => []);
-      expect(resultList, tTvList);
-    });
-
-    test('should return ServerFailure when call to data source is unsuccessful',
-        () async {
-      // arrange
-      when(mockRemoteDataSource.searchTv(tQuery))
-          .thenThrow(ServerException());
-      // act
-      final result = await repository.searchTv(tQuery);
-      // assert
-      expect(result, const Left(ServerFailure('')));
-    });
 
     test(
-        'should return ConnectionFailure when device is not connected to the internet',
-        () async {
-      // arrange
-      when(mockRemoteDataSource.searchTv(tQuery))
-          .thenThrow(const SocketException('Failed to connect to the network'));
-      // act
-      final result = await repository.searchTv(tQuery);
-      // assert
-      expect(
-          result, const Left(ConnectionFailure('Failed to connect to the network')));
-    });
+        'should return Certification Failure when the call to remote data source is unsuccessful',
+            () async {
+          // arrange
+          when(mockRemoteDataSource.getTvRecommendations(tId))
+              .thenThrow(const TlsException());
+          // act
+          final result = await repository.getTvRecommendations(tId);
+          // assert
+          verify(mockRemoteDataSource.getTvRecommendations(tId));
+          expect(result, equals(const Left(CommonFailure('Certificated not valid\n'))));
+        });
+
+    test(
+        'should return Exception Failure when the call to remote data source is unsuccessful',
+            () async {
+          // arrange
+          when(mockRemoteDataSource.getTvRecommendations(tId))
+              .thenThrow(Exception);
+          // act
+          final result = await repository.getTvRecommendations(tId);
+          // assert
+          verify(mockRemoteDataSource.getTvRecommendations(tId));
+          expect(result, equals(const Left(CommonFailure('Exception'))));
+        });
   });
 
   group('save watchlist', () {
